@@ -14,29 +14,25 @@ import android.widget.Toast;
 import com.example.projecto.R;
 import com.example.projecto.adapters.ViewAllAdapters;
 import com.example.projecto.models.ViewAllModel;
+import com.example.projecto.queries.ProductQuery;
+import com.example.projecto.queries.ProductQueryFactory;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.ktx.Firebase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ViewAllActivity extends AppCompatActivity {
 
-
     FirebaseFirestore firestore;
     RecyclerView recyclerView;
     ViewAllAdapters viewAllAdapters;
-
     List<ViewAllModel> viewAllModelList;
-
     Toolbar toolbar;
-
     ProgressBar progressBar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,65 +64,28 @@ public class ViewAllActivity extends AppCompatActivity {
         viewAllAdapters = new ViewAllAdapters(this, viewAllModelList);
         recyclerView.setAdapter(viewAllAdapters);
 
-        if (type != null && type.equalsIgnoreCase("medication")){
-            firestore.collection("Allproducts").whereEqualTo("type","medication").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                            ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
-                            viewAllModelList.add(viewAllModel);
-                            viewAllAdapters.notifyDataSetChanged();
-                            progressBar.setVisibility(View.GONE);
-                            recyclerView.setVisibility(View.VISIBLE);
-                        }
-                    }
-                    else{
-                        Toast.makeText(ViewAllActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+        if (type != null) {
+            fetchProducts(type);
         }
+    }
 
-        if (type != null && type.equalsIgnoreCase("health")){
-            firestore.collection("Allproducts").whereEqualTo("type","health").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                            ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
-                            viewAllModelList.add(viewAllModel);
-                            viewAllAdapters.notifyDataSetChanged();
-                            progressBar.setVisibility(View.GONE);
-                            recyclerView.setVisibility(View.VISIBLE);
-                        }
+    private void fetchProducts(String type) {
+        ProductQuery productQuery = ProductQueryFactory.createQuery(type, firestore);
+        productQuery.fetchProducts().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                        ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
+                        viewAllModelList.add(viewAllModel);
+                        viewAllAdapters.notifyDataSetChanged();
                     }
-                    else{
-                        Toast.makeText(ViewAllActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
-                    }
+                    progressBar.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                } else {
+                    Toast.makeText(ViewAllActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                 }
-            });
-        }
-
-        if (type != null && type.equalsIgnoreCase("personal")){
-            firestore.collection("Allproducts").whereEqualTo("type","personal").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-                            ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
-                            viewAllModelList.add(viewAllModel);
-                            viewAllAdapters.notifyDataSetChanged();
-                            progressBar.setVisibility(View.GONE);
-                            recyclerView.setVisibility(View.VISIBLE);
-                        }
-                    }
-                    else{
-                        Toast.makeText(ViewAllActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
-
+            }
+        });
     }
 }
