@@ -70,34 +70,39 @@ public class AddProducts extends AppCompatActivity {
     }
 
     private void addP() {
-            String productName = name.getText().toString().trim();
-            String productDescription = description.getText().toString().trim();
-            String productGenericName = gname.getText().toString().trim();
-            String productPrice = price.getText().toString().trim();
-            String productType = type.getText().toString().trim();
-            String productDiscount = discount.getText().toString().trim();
+        String productName = name.getText().toString().trim();
+        String productDescription = description.getText().toString().trim();
+        String productGenericName = gname.getText().toString().trim();
+        String productPrice = price.getText().toString().trim();
+        String productType = type.getText().toString().trim();
+        String productDiscount = discount.getText().toString().trim();
 
-            if (productName.isEmpty() || productDescription.isEmpty() || productGenericName.isEmpty()
-                    || productPrice.isEmpty() || productType.isEmpty() || productDiscount.isEmpty()) {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                return;
-            }
+        if (productName.isEmpty() || productDescription.isEmpty() || productGenericName.isEmpty()
+                || productPrice.isEmpty() || productType.isEmpty() || productDiscount.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            // Create an instance of your ViewAllModel
-            ViewAllModel product = new ViewAllModel(
-                    productName, productGenericName, Double.parseDouble(productPrice),
-                    productDescription, imageUrl, productType, productDiscount);
+        // Use the singleton instance of ViewAllModel
+        ViewAllModel product = ViewAllModel.getInstance();
+        product.setName(productName);
+        product.setGname(productGenericName);
+        product.setPrice(Double.parseDouble(productPrice));
+        product.setDescription(productDescription);
+        product.setImg_url(imageUrl);
+        product.setType(productType);
+        product.setDiscount(productDiscount);
 
-            // Assuming 'Allproducts' is the Firestore collection
-            db.collection("Allproducts")
-                    .add(product)
-                    .addOnSuccessListener(documentReference -> {
-                        Toast.makeText(AddProducts.this, "Product added successfully", Toast.LENGTH_SHORT).show();
-                        finish(); // Finish the activity after adding the product
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(AddProducts.this, "Failed to add product", Toast.LENGTH_SHORT).show();
-                    });
+        // Assuming 'Allproducts' is the Firestore collection
+        db.collection("Allproducts")
+                .add(product)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(AddProducts.this, "Product added successfully", Toast.LENGTH_SHORT).show();
+                    finish(); // Finish the activity after adding the product
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(AddProducts.this, "Failed to add product", Toast.LENGTH_SHORT).show();
+                });
     }
 
     @Override

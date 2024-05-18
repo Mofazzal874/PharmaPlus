@@ -109,10 +109,15 @@ public class ModifyProducts extends AppCompatActivity {
         String modifiedDiscount = etDiscount.getText().toString().trim();
         String modifiedType = etType.getText().toString().trim();
 
-        // Create a ViewAllModel object with the modified data
-        ViewAllModel modifiedProduct = new ViewAllModel(
-                modifiedName, modifiedGenericName, Double.parseDouble(modifiedPrice),
-                modifiedDescription, imageUrl, modifiedType, modifiedDiscount);
+        // Use the singleton instance of ViewAllModel
+        ViewAllModel modifiedProduct = ViewAllModel.getInstance();
+        modifiedProduct.setName(modifiedName);
+        modifiedProduct.setGname(modifiedGenericName);
+        modifiedProduct.setPrice(Double.parseDouble(modifiedPrice));
+        modifiedProduct.setDescription(modifiedDescription);
+        modifiedProduct.setImg_url(imageUrl);
+        modifiedProduct.setType(modifiedType);
+        modifiedProduct.setDiscount(modifiedDiscount);
 
         // Update the document in Firestore with the modified object
         db.collection("Allproducts").document(productId)

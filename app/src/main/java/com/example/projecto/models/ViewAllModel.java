@@ -3,26 +3,28 @@ package com.example.projecto.models;
 import java.io.Serializable;
 
 public class ViewAllModel implements Serializable {
-    String name;
-    String gname;
-    double price;
-    String description;
-    String img_url;
-    String type;
-    String discount;
+    private static ViewAllModel instance;
 
-    public ViewAllModel(){}
+    private String name;
+    private String gname;
+    private double price;
+    private String description;
+    private String img_url;
+    private String type;
+    private String discount;
 
-    public ViewAllModel(String name, String gname, double price, String description, String img_url, String type, String discount) {
-        this.name = name;
-        this.gname = gname;
-        this.price = price;
-        this.description = description;
-        this.img_url = img_url;
-        this.type = type;
-        this.discount = discount;
+    // Private constructor to prevent instantiation
+    private ViewAllModel() {}
+
+    // Static method to get the singleton instance
+    public static synchronized ViewAllModel getInstance() {
+        if (instance == null) {
+            instance = new ViewAllModel();
+        }
+        return instance;
     }
 
+    // Getters and Setters
     public String getName() {
         return name;
     }
