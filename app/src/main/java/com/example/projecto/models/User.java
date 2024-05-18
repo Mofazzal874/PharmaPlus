@@ -32,6 +32,9 @@ public class User {
         return instance;
     }
 
+    public static synchronized void resetInstance() {
+        uniqueInstance = null;
+    }
     public String getName() {
         return name;
     }
