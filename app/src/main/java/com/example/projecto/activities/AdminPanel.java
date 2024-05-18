@@ -34,6 +34,7 @@ public class AdminPanel extends AppCompatActivity {
                 startActivity(new Intent(AdminPanel.this, AddProducts.class));
             }
         });
+        //Amit
         Modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
