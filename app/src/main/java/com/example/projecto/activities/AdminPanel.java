@@ -40,6 +40,7 @@ public class AdminPanel extends AppCompatActivity {
                 startActivity(new Intent(AdminPanel.this,ModifyProducts.class));
             }
         });
+        //Mofazzal
         Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
