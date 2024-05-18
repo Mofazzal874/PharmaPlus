@@ -1,27 +1,40 @@
 package com.example.projecto.models;
 
 public class MyOrderModel {
-    String productName;
-    String productPrice;
-    String currentDate;
-    String currentTime;
-    String totalQuantity;
+    private static MyOrderModel instance;
 
-    double totalPrice;
+    private String productName;
+    private String productPrice;
+    private String currentDate;
+    private String currentTime;
+    private String totalQuantity;
+    private double totalPrice;
+    private String documentId;
 
-    String documentId;
-    public MyOrderModel(){}
+    // Private constructor to prevent instantiation
+    private MyOrderModel() {}
 
-
-    public MyOrderModel(String productName, String productPrice, String currentDate, String currentTime, String totalQuantity, double totalPrice) {
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.currentDate = currentDate;
-        this.currentTime = currentTime;
-        this.totalQuantity = totalQuantity;
-        this.totalPrice = totalPrice;
+    // Static method to get the singleton instance
+    public static synchronized MyOrderModel getInstance() {
+        if (instance == null) {
+            instance = new MyOrderModel();
+        }
+        return instance;
     }
 
+    // Overloaded method to set initial values
+    public static synchronized MyOrderModel getInstance(String productName, String productPrice, String currentDate, String currentTime, String totalQuantity, double totalPrice) {
+        MyOrderModel instance = getInstance();
+        instance.setProductName(productName);
+        instance.setProductPrice(productPrice);
+        instance.setCurrentDate(currentDate);
+        instance.setCurrentTime(currentTime);
+        instance.setTotalQuantity(totalQuantity);
+        instance.setTotalPrice(totalPrice);
+        return instance;
+    }
+
+    // Getters and Setters
     public String getDocumentId() {
         return documentId;
     }

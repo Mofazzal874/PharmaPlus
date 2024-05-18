@@ -1,16 +1,35 @@
 package com.example.projecto.models;
 
 public class User {
-    String name;
-    String email;
-    String password;
+    private String name;
+    private String email;
+    private String password;
 
-    public User(){}
+    // Volatile keyword ensures that multiple threads handle the uniqueInstance variable correctly
+    private static volatile User uniqueInstance;
 
-    public User(String a,String b, String c){
-        this.name = a;
-        this.email = b;
-        this.password = c;
+    // Private constructor prevents instantiation from other classes
+    private User() {}
+
+    // Double-checked locking for thread safety and performance
+    public static User getInstance() {
+        if (uniqueInstance == null) {
+            synchronized (User.class) {
+                if (uniqueInstance == null) {
+                    uniqueInstance = new User();
+                }
+            }
+        }
+        return uniqueInstance;
+    }
+
+    // Additional constructor for setting user details
+    public static User getInstance(String name, String email, String password) {
+        User instance = getInstance();
+        instance.setName(name);
+        instance.setEmail(email);
+        instance.setPassword(password);
+        return instance;
     }
 
     public String getName() {
@@ -37,5 +56,3 @@ public class User {
         this.password = password;
     }
 }
-
-
