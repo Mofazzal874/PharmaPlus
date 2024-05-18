@@ -1,19 +1,33 @@
 package com.example.projecto.models;
 
 public class CategoryModel {
-    String name;
-    String img_url;
+    private static CategoryModel instance;
 
-    String type;
+    private String name;
+    private String img_url;
+    private String type;
 
-    public CategoryModel(){}
+    // Private constructor to prevent instantiation
+    private CategoryModel() {}
 
-    public CategoryModel(String name, String img_url, String type) {
-        this.name = name;
-        this.img_url = img_url;
-        this.type = type;
+    // Static method to get the singleton instance
+    public static synchronized CategoryModel getInstance() {
+        if (instance == null) {
+            instance = new CategoryModel();
+        }
+        return instance;
     }
 
+    // Overloaded method to set initial values
+    public static synchronized CategoryModel getInstance(String name, String img_url, String type) {
+        CategoryModel instance = getInstance();
+        instance.setName(name);
+        instance.setImg_url(img_url);
+        instance.setType(type);
+        return instance;
+    }
+
+    // Getters and Setters
     public String getName() {
         return name;
     }

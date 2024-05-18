@@ -21,17 +21,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-
 public class RegisterActivity extends AppCompatActivity {
     TextView login;
-    EditText name,email,password;
-
+    EditText name, email, password;
     Button register;
-
     ProgressBar progressBar;
-
     FirebaseAuth auth;
-
     FirebaseDatabase database;
 
     @Override
@@ -39,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onBackPressed();
         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +46,6 @@ public class RegisterActivity extends AppCompatActivity {
         login = findViewById(R.id.login_textView);
         register = findViewById(R.id.reg_button);
         progressBar = findViewById(R.id.progressbar);
-
         progressBar.setVisibility(View.GONE);
 
         name = findViewById(R.id.reg_name);
@@ -60,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }
         });
 
@@ -92,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (userPassword.length() < 6) {
-            Toast.makeText(this, "Password must be greater then 6 letter", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password must be greater than 6 letters", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -101,18 +96,22 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(userName,userEmail,userPassword);
+                            // Get the singleton instance of User and set its attributes
+                            User user = User.getInstance();
+                            user.setName(userName);
+                            user.setEmail(userEmail);
+                            user.setPassword(userPassword);
+
                             String id = task.getResult().getUser().getUid();
                             database.getReference().child("Users").child(id).setValue(user);
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(RegisterActivity.this, "Registration is complete.", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         } else {
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(RegisterActivity.this, "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-
     }
-
 }

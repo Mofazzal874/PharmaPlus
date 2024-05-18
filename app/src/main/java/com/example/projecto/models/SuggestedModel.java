@@ -3,25 +3,41 @@ package com.example.projecto.models;
 import java.io.Serializable;
 
 public class SuggestedModel implements Serializable {
-    String name;
-    String gname;
-    double price;
-    String description;
-    String img_url;
-    String type;
-    String discount;
+    private static SuggestedModel instance;
 
-    public SuggestedModel(){}
-    public SuggestedModel(String name, String gname, double price, String description, String img_url, String type, String discount) {
-        this.name = name;
-        this.gname = gname;
-        this.price = price;
-        this.description = description;
-        this.img_url = img_url;
-        this.type = type;
-        this.discount = discount;
+    private String name;
+    private String gname;
+    private double price;
+    private String description;
+    private String img_url;
+    private String type;
+    private String discount;
+
+    // Private constructor to prevent instantiation
+    private SuggestedModel() {}
+
+    // Static method to get the singleton instance
+    public static synchronized SuggestedModel getInstance() {
+        if (instance == null) {
+            instance = new SuggestedModel();
+        }
+        return instance;
     }
 
+    // Overloaded method to set initial values
+    public static synchronized SuggestedModel getInstance(String name, String gname, double price, String description, String img_url, String type, String discount) {
+        SuggestedModel instance = getInstance();
+        instance.setName(name);
+        instance.setGname(gname);
+        instance.setPrice(price);
+        instance.setDescription(description);
+        instance.setImg_url(img_url);
+        instance.setType(type);
+        instance.setDiscount(discount);
+        return instance;
+    }
+
+    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -78,7 +94,3 @@ public class SuggestedModel implements Serializable {
         this.discount = discount;
     }
 }
-
-
-
-

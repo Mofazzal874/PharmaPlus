@@ -1,17 +1,31 @@
 package com.example.projecto.models;
 
 public class AddressModel {
+    private static AddressModel instance;
 
-    String userAddress;
-    boolean isSelected;
+    private String userAddress;
+    private boolean isSelected;
 
-    public AddressModel(){}
+    // Private constructor to prevent instantiation
+    private AddressModel() {}
 
-    public AddressModel(String userAddress, boolean isSelected) {
-        this.userAddress = userAddress;
-        this.isSelected = isSelected;
+    // Static method to get the singleton instance
+    public static synchronized AddressModel getInstance() {
+        if (instance == null) {
+            instance = new AddressModel();
+        }
+        return instance;
     }
 
+    // Overloaded method to set initial values
+    public static synchronized AddressModel getInstance(String userAddress, boolean isSelected) {
+        AddressModel instance = getInstance();
+        instance.setUserAddress(userAddress);
+        instance.setSelected(isSelected);
+        return instance;
+    }
+
+    // Getters and Setters
     public String getUserAddress() {
         return userAddress;
     }
