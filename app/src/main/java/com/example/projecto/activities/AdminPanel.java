@@ -27,7 +27,7 @@ public class AdminPanel extends AppCompatActivity {
         Add = findViewById(R.id.btnAddProducts);
         Modify = findViewById(R.id.btnModifyProducts);
         Delete = findViewById(R.id.btnDeleteProducts);
-
+//        Apan
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
