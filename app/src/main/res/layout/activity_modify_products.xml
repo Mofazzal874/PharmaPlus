@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="700dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.AddProducts"
+    android:background="@color/white"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/entername"
+            android:text="Enter Product Name"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+
+            />
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColorHint="#969696"
+            android:textColor="@color/black"
+            android:hint="Name"
+            android:layout_below="@+id/entername"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etName"
+            android:id="@+id/modifyText"
+            android:text="Modify"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+
+            />
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#969696"
+            android:textColor="@color/black"
+            android:hint="Description"
+            android:textSize="20sp"
+            android:layout_below="@id/modifyText"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etGenericName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#969696"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:hint="Generic Name"
+            android:layout_below="@id/etDescription"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColorHint="#969696"
+            android:textColor="@color/black"
+            android:hint="Price"
+            android:inputType="numberDecimal"
+            android:layout_below="@id/etGenericName"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etDiscount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#969696"
+            android:hint="Discount"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_below="@id/etPrice"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#969696"
+            android:hint="Type"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_below="@id/etDiscount"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnUploadImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload Image"
+            android:layout_below="@id/etType"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/btnModifyProducts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modify Product"
+            android:layout_below="@id/btnUploadImage"
+            android:layout_marginTop="16dp"/>
+
+    </RelativeLayout>
+</ScrollView>
