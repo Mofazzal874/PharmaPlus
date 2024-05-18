@@ -21,7 +21,6 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ViewAllAdapters extends RecyclerView.Adapter<ViewAllAdapters.ViewHolder> {
-
     Context context;
     List<ViewAllModel> viewAllModelList;
 
