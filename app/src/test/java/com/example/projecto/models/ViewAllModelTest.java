@@ -70,4 +70,50 @@ public class ViewAllModelTest {
         assertNotNull(newIns);  //notun zehetu create korchi , taile obosshoi null hobe na
         assertNotSame(oldIns, newIns);  //but ager tar instance same hoile test failed
     }
+
+
+    //sob property update korar test eita
+    @Test
+    public void testComplexPropertyUpdates() {
+        //abar sob property update korlam..instance ta ekhono same ache
+        viewAllModel.setName("Bactin Ophthalmic Solution");
+        viewAllModel.setGname("Ciprofloxacin 0.3%");
+        viewAllModel.setPrice(35);
+        viewAllModel.setDescription("Ciprofloxacin 0.3% Eye/Ear Drops is indicated for the treatment of infections caused by susceptible strains of the designated microorganisms...");
+        viewAllModel.setImg_url("https://firebasestorage.googleapis.com/v0/b/projecto-a1b41.appspot.com/o/product_images%2F1700086071103_1000009602?alt=media&token=15391a9b-5575-4671-9135-b9317a75360b");
+        viewAllModel.setType("health");
+        viewAllModel.setDiscount("Discount 10% Off");
+
+        assertEquals("Bactin Ophthalmic Solution", viewAllModel.getName());
+        assertEquals("Ciprofloxacin 0.3%", viewAllModel.getGname());
+        assertEquals(35, viewAllModel.getPrice(), 0.0);
+        assertEquals("Ciprofloxacin 0.3% Eye/Ear Drops is indicated for the treatment of infections caused by susceptible strains of the designated microorganisms...", viewAllModel.getDescription());
+        assertEquals("https://firebasestorage.googleapis.com/v0/b/projecto-a1b41.appspot.com/o/product_images%2F1700086071103_1000009602?alt=media&token=15391a9b-5575-4671-9135-b9317a75360b", viewAllModel.getImg_url());
+        assertEquals("health", viewAllModel.getType());
+        assertEquals("Discount 10% Off", viewAllModel.getDiscount());
+    }
+
+
+    //eikhane field null or empty thakle oitar test hobe
+
+    @Test
+    public void testNullAndEmptyVal() {
+        //abar update korlam same instance
+        viewAllModel.setName(null);
+        viewAllModel.setGname("");
+        viewAllModel.setPrice(0);
+        viewAllModel.setDescription(null);
+        viewAllModel.setImg_url("");
+        viewAllModel.setType(null);
+        viewAllModel.setDiscount("");
+
+        assertNull(viewAllModel.getName());
+        assertEquals("", viewAllModel.getGname());
+        assertEquals(0, viewAllModel.getPrice(), 0.0);
+        assertNull(viewAllModel.getDescription());
+        assertEquals("", viewAllModel.getImg_url());
+        assertNull(viewAllModel.getType());
+        assertEquals("", viewAllModel.getDiscount());
+    }
+
 }
