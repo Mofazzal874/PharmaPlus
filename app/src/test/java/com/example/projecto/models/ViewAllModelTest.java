@@ -115,5 +115,24 @@ public class ViewAllModelTest {
         assertNull(viewAllModel.getType());
         assertEquals("", viewAllModel.getDiscount());
     }
+    //extreme values check -sets the price to extreme values (maximum and minimum possible values), ensuring the model can handle these edge cases.
+    @Test
+    public void testExtremeValues() {
+        viewAllModel.setPrice(Double.MAX_VALUE);
+        assertEquals(Double.MAX_VALUE, viewAllModel.getPrice(), 0.0);
+
+        viewAllModel.setPrice(Double.MIN_VALUE);
+        assertEquals(Double.MIN_VALUE, viewAllModel.getPrice(), 0.0);
+    }
+
+    //eita diya extreme case check korlam ,Sets the price to boundary values (zero and negative), testing how the model handles these.
+    @Test
+    public void testBoundaryVal() {
+        viewAllModel.setPrice(0);
+        assertEquals(0, viewAllModel.getPrice(), 0.0);
+
+        viewAllModel.setPrice(-1);
+        assertEquals(-1, viewAllModel.getPrice(), 0.0);
+    }
 
 }
