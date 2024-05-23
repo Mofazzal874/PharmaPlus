@@ -24,6 +24,12 @@ public class ViewAllModel implements Serializable {
         return instance;
     }
 
+    // Method to reset the singleton instance for testing
+    public static void resetInstance() {
+        instance = null;
+    }
+
+
     // Getters and Setters
     public String getName() {
         return name;
