@@ -79,6 +79,9 @@ dependencies {
     
     //dependencies for ui_test
     androidTestImplementation("androidx.test:rules:1.5.0")
+    androidTestImplementation("org.mockito:mockito-core:3.12.4")
+    androidTestImplementation("org.mockito:mockito-android:3.12.4")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.4.0")
     // AndroidX Test - Instrumentation Testing
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
