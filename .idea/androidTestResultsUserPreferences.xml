@@ -16,6 +16,20 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="1094469659">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_8_Pro_Kola_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="realme RMX3195" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
