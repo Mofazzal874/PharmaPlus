@@ -85,13 +85,7 @@ public class AddProducts extends AppCompatActivity {
 
         // Use the singleton instance of ViewAllModel
         ViewAllModel product = ViewAllModel.getInstance();
-        product.setName(productName);
-        product.setGname(productGenericName);
-        product.setPrice(Double.parseDouble(productPrice));
-        product.setDescription(productDescription);
-        product.setImg_url(imageUrl);
-        product.setType(productType);
-        product.setDiscount(productDiscount);
+        product.setProductDetails(productName, productGenericName, Double.parseDouble(productPrice), productDescription, imageUrl, productType, productDiscount);
 
         // Assuming 'Allproducts' is the Firestore collection
         db.collection("Allproducts")
