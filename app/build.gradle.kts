@@ -46,6 +46,7 @@ dependencies {
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("com.google.firebase:firebase-firestore:24.9.1")
     implementation("com.google.firebase:firebase-storage:20.3.0")
+    implementation("androidx.test.ext:truth:1.5.0")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     implementation ("com.makeramen:roundedimageview:2.3.0")
     implementation ("com.airbnb.android:lottie:4.1.0")
@@ -74,8 +75,19 @@ dependencies {
     // Robolectric dependencies for unit tests
     testImplementation("org.robolectric:robolectric:4.7.3")  //to run Android tests in the JVM without the need for an emulator or real device.
 
+
+    
     //dependencies for ui_test
     androidTestImplementation("androidx.test:rules:1.5.0")
-
-
+    // AndroidX Test - Instrumentation Testing
+    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.test:rules:1.5.0")
+    // Espresso
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    // Mockito
+    testImplementation("org.mockito:mockito-core:5.12.0")
+    androidTestImplementation("org.mockito:mockito-android:4.0.0")
+    // Activity Scenario
+    androidTestImplementation("androidx.test:core:1.5.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
 }
