@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:background="@color/white"
     android:padding="16dp"
-    tools:context=".activities.AdminLoginActivity">
+    tools:context=".activities.AdminLoginActivity"
+    android:id="@+id/admin_login_page_id">
 
     <EditText
         android:id="@+id/etUsername"
