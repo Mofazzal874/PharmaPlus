@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Welcome to PharmaSynk"
+        android:text="Welcome to PharmaPlus"
         android:textStyle="bold"
         android:textSize="25sp"
         android:textColor="#16B1AE"
