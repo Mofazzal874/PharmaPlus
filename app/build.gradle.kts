@@ -74,6 +74,8 @@ dependencies {
     // Robolectric dependencies for unit tests
     testImplementation("org.robolectric:robolectric:4.7.3")  //to run Android tests in the JVM without the need for an emulator or real device.
 
+    //dependencies for ui_test
+    androidTestImplementation("androidx.test:rules:1.5.0")
 
 
 }
