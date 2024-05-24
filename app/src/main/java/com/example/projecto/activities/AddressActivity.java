@@ -1,7 +1,5 @@
 package com.example.projecto.activities;
 
-import static android.app.PendingIntent.getActivity;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,22 +26,20 @@ import java.util.List;
 
 public class AddressActivity extends AppCompatActivity implements AddressAdapter.SelectedAddress {
 
-    Button addAddress,paymentBtn;
-
+    Button addAddress, paymentBtn;
     RecyclerView recyclerView;
-
     private List<AddressModel> addressModelList;
     private AddressAdapter addressAdapter;
-
     FirebaseFirestore firestore;
-    FirebaseAuth auth;
-
+    private static FirebaseAuth auth;
     Toolbar toolbar;
-
     String mAddress = "";
-
     double receivedTotalAmount;
 
+    // Static method to allow setting FirebaseAuth from tests
+    public static void setFirebaseAuth(FirebaseAuth firebaseAuth) {
+        auth = firebaseAuth;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,41 +57,41 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
             }
         });
 
-
         Intent intent = getIntent();
         if (intent != null) {
             receivedTotalAmount = intent.getDoubleExtra("TOTAL_AMOUNT_KEY", 0.0);
-            // Now 'receivedTotalAmount' holds your total amount as a double, use it as needed
         }
 
+        if (auth == null) {
+            auth = FirebaseAuth.getInstance();
+        }
 
-        auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
         recyclerView = findViewById(R.id.address_recycler);
-
         addAddress = findViewById(R.id.add_address_btn);
         paymentBtn = findViewById(R.id.payment_btn);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
         addressModelList = new ArrayList<>();
-        addressAdapter = new AddressAdapter(getApplicationContext(),addressModelList,this) ;
+        addressAdapter = new AddressAdapter(getApplicationContext(), addressModelList, this);
         recyclerView.setAdapter(addressAdapter);
 
-        firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
-                        .collection("Address").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            for (DocumentSnapshot doc: task.getResult().getDocuments()){
-                                AddressModel addressModel = doc.toObject(AddressModel.class);
-                                addressModelList.add(addressModel);
-                                addressAdapter.notifyDataSetChanged();
+        if (auth.getCurrentUser() != null) {
+            firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
+                    .collection("Address").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot doc : task.getResult().getDocuments()) {
+                                    AddressModel addressModel = doc.toObject(AddressModel.class);
+                                    addressModelList.add(addressModel);
+                                    addressAdapter.notifyDataSetChanged();
+                                }
                             }
                         }
-                    }
-                });
+                    });
+        }
 
         paymentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +108,6 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
                 startActivity(new Intent(AddressActivity.this, AddAddressActivity.class));
             }
         });
-
     }
 
     @Override
