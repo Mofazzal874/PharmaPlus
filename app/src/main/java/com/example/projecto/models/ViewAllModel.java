@@ -1,22 +1,23 @@
 package com.example.projecto.models;
 
-import java.io.Serializable;
+import com.example.projecto.observer.Observer;
+import com.example.projecto.observer.Subject;
 
-public class ViewAllModel implements Serializable {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ViewAllModel implements Subject, Serializable{
     private static ViewAllModel instance;
 
-    private String name;
-    private String gname;
-    private double price;
-    private String description;
-    private String img_url;
-    private String type;
-    private String discount;
+    private List<Observer> observers = new ArrayList<>();
 
-    // Private constructor to prevent instantiation
+    // Existing fields
+    private String name, gname, description, img_url, type, discount;
+    private double price;
+
     private ViewAllModel() {}
 
-    // Static method to get the singleton instance
     public static synchronized ViewAllModel getInstance() {
         if (instance == null) {
             instance = new ViewAllModel();
@@ -24,19 +25,49 @@ public class ViewAllModel implements Serializable {
         return instance;
     }
 
-    // Method to reset the singleton instance for testing
-    public static void resetInstance() {
-        instance = null;
+    @Override
+    public void registerObserver(Observer observer) {
+        if (!observers.contains(observer)) {
+            observers.add(observer);
+        }
     }
 
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
 
-    // Getters and Setters
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
+    }
+
+    // Call notifyObservers whenever a product is updated, added, or removed
+    public void setProductDetails(String name, String gname, double price, String description, String img_url, String type, String discount) {
+        this.name = name;
+        this.gname = gname;
+        this.price = price;
+        this.description = description;
+        this.img_url = img_url;
+        this.type = type;
+        this.discount = discount;
+        notifyObservers();
+    }
+
+    // Method to reset the singleton instance for testing
+    public static void resetInstance() { instance = null; }
+
+
+    // Existing getters and setters
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+        notifyObservers();
     }
 
     public String getGname() {
@@ -45,6 +76,7 @@ public class ViewAllModel implements Serializable {
 
     public void setGname(String gname) {
         this.gname = gname;
+        notifyObservers();
     }
 
     public double getPrice() {
@@ -53,6 +85,7 @@ public class ViewAllModel implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+        notifyObservers();
     }
 
     public String getDescription() {
@@ -61,6 +94,7 @@ public class ViewAllModel implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+        notifyObservers();
     }
 
     public String getImg_url() {
@@ -69,6 +103,7 @@ public class ViewAllModel implements Serializable {
 
     public void setImg_url(String img_url) {
         this.img_url = img_url;
+        notifyObservers();
     }
 
     public String getType() {
@@ -77,6 +112,7 @@ public class ViewAllModel implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+        notifyObservers();
     }
 
     public String getDiscount() {
@@ -85,5 +121,6 @@ public class ViewAllModel implements Serializable {
 
     public void setDiscount(String discount) {
         this.discount = discount;
+        notifyObservers();
     }
 }
