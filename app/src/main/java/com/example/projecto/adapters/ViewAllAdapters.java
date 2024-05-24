@@ -47,7 +47,7 @@ public class ViewAllAdapters extends RecyclerView.Adapter<ViewAllAdapters.ViewHo
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("detail", viewAllModelList.get(holder.getAdapterPosition()));
+                intent.putExtra("detail", (Serializable)viewAllModelList.get(holder.getAdapterPosition()));
                 context.startActivity(intent);
             }
         });

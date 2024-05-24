@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.projecto.R;
 import com.example.projecto.adapters.ViewAllAdapters;
 import com.example.projecto.models.ViewAllModel;
+import com.example.projecto.observer.Observer;
 import com.example.projecto.queries.ProductQuery;
 import com.example.projecto.queries.ProductQueryFactory;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,7 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewAllActivity extends AppCompatActivity {
+public class ViewAllActivity extends AppCompatActivity implements Observer {
 
     FirebaseFirestore firestore;
     RecyclerView recyclerView;
@@ -64,6 +65,9 @@ public class ViewAllActivity extends AppCompatActivity {
         viewAllAdapters = new ViewAllAdapters(this, viewAllModelList);
         recyclerView.setAdapter(viewAllAdapters);
 
+        // Register this activity as an observer
+        ViewAllModel.getInstance().registerObserver(this);
+
         if (type != null) {
             fetchProducts(type);
         }
@@ -87,5 +91,18 @@ public class ViewAllActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void update() {
+        // Update RecyclerView data
+        viewAllAdapters.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Remove this activity as an observer
+        ViewAllModel.getInstance().removeObserver(this);
     }
 }
