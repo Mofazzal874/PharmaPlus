@@ -65,10 +65,11 @@ dependencies {
     testImplementation("androidx.test:runner:1.4.0")
 
     // Mockito dependencies
-
+    implementation("org.mockito:mockito-core:5.12.0")  //core Mockito functionalities.
     testImplementation("org.mockito:mockito-core:4.0.0")  //core Mockito functionalities.
     testImplementation("org.mockito:mockito-inline:4.0.0") //to support mocking of final classes and methods.
     testImplementation("org.mockito:mockito-android:4.0.0")  //Mockito integration with Android.
+    testImplementation ("org.mockito:mockito-junit-jupiter:4.0.0")
 
     // Robolectric dependencies for unit tests
     testImplementation("org.robolectric:robolectric:4.7.3")  //to run Android tests in the JVM without the need for an emulator or real device.
