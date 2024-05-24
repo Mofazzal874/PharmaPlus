@@ -24,7 +24,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="70dp"
-        android:text="PharmaSynk"
+        android:text="PharmaPlus"
         android:textAllCaps="false"
         android:textStyle="bold"
         android:textColor="#16B1AE"
