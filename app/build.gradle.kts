@@ -47,6 +47,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore:24.9.1")
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("androidx.test.ext:truth:1.5.0")
+    implementation("androidx.test.espresso:espresso-intents:3.5.1")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     implementation ("com.makeramen:roundedimageview:2.3.0")
     implementation ("com.airbnb.android:lottie:4.1.0")
@@ -79,9 +80,6 @@ dependencies {
     
     //dependencies for ui_test
     androidTestImplementation("androidx.test:rules:1.5.0")
-    androidTestImplementation("org.mockito:mockito-core:3.12.4")
-    androidTestImplementation("org.mockito:mockito-android:3.12.4")
-    androidTestImplementation("androidx.test.espresso:espresso-intents:3.4.0")
     // AndroidX Test - Instrumentation Testing
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
