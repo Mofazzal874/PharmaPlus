@@ -98,7 +98,6 @@ public class ViewAllActivity extends AppCompatActivity implements Observer {
         // Update RecyclerView data
         viewAllAdapters.notifyDataSetChanged();
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
