@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,9 @@ import com.google.firebase.storage.UploadTask;
 
 public class ModifyProducts extends AppCompatActivity {
 
-    EditText etProductName, etGenericName, etPrice, etDiscount, etType,etDescription;
+    EditText etProductName, etGenericName, etPrice, etDiscount,etDescription;
+
+    Spinner etType;
     Button btnUploadImage, btnModify;
     String imageUrl;
 
@@ -49,7 +53,16 @@ public class ModifyProducts extends AppCompatActivity {
         etDescription = findViewById(R.id.etDescription);
         etPrice = findViewById(R.id.etPrice);
         etDiscount = findViewById(R.id.etDiscount);
+
+
         etType = findViewById(R.id.etType);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.type_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        etType.setAdapter(adapter);
+
+
+
         btnUploadImage = findViewById(R.id.btnUploadImage);
         btnModify = findViewById(R.id.btnModifyProducts);
 
@@ -72,7 +85,6 @@ public class ModifyProducts extends AppCompatActivity {
                 openImagePicker();
             }
         });
-
 
     }
 
@@ -107,7 +119,7 @@ public class ModifyProducts extends AppCompatActivity {
         String modifiedDescription = etDescription.getText().toString().trim();
         String modifiedPrice = etPrice.getText().toString().trim();
         String modifiedDiscount = etDiscount.getText().toString().trim();
-        String modifiedType = etType.getText().toString().trim();
+        String modifiedType = etType.getSelectedItem().toString();
 
         // Use the singleton instance of ViewAllModel
         ViewAllModel modifiedProduct = ViewAllModel.getInstance();
@@ -161,5 +173,4 @@ public class ModifyProducts extends AppCompatActivity {
             });
         }
     }
-
 }
