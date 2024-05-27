@@ -29,6 +29,5 @@ public class PaymentActivityTest {
         // Verify if the OrderPlaced activity is launched by checking a view in OrderPlaced
         Espresso.onView(ViewMatchers.withId(R.id.order_placed_view_id)) // replace with actual ID in OrderPlaced activity
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-
     }
 }

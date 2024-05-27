@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.projecto.R;
@@ -21,7 +23,9 @@ import com.google.firebase.storage.UploadTask;
 
 public class AddProducts extends AppCompatActivity {
 
-    EditText name, description, gname, price, type, discount;
+    EditText name, description, gname, price, discount;
+
+    Spinner typeSpinner;
     Button uploadImg, addProduct;
 
     FirebaseFirestore db;
@@ -41,7 +45,14 @@ public class AddProducts extends AppCompatActivity {
         description = findViewById(R.id.etDescription);
         gname = findViewById(R.id.etGenericName);
         price = findViewById(R.id.etPrice);
-        type = findViewById(R.id.etType);
+
+        typeSpinner = findViewById(R.id.etType);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.type_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeSpinner.setAdapter(adapter);
+
+
         discount = findViewById(R.id.etDiscount);
 
         uploadImg = findViewById(R.id.btnUploadImage);
@@ -74,7 +85,7 @@ public class AddProducts extends AppCompatActivity {
         String productDescription = description.getText().toString().trim();
         String productGenericName = gname.getText().toString().trim();
         String productPrice = price.getText().toString().trim();
-        String productType = type.getText().toString().trim();
+        String productType = typeSpinner.getSelectedItem().toString();
         String productDiscount = discount.getText().toString().trim();
 
         if (productName.isEmpty() || productDescription.isEmpty() || productGenericName.isEmpty()

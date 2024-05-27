@@ -73,17 +73,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"/>
 
-    <EditText
+    <Spinner
         android:id="@+id/etType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Type"
-        android:textColorHint="#969696"
-        android:textColor="@color/black"
-        android:textSize="20sp"
         android:layout_below="@id/etDiscount"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:entries="@array/type_options"/>
 
     <Button
         android:id="@+id/btnUploadImage"

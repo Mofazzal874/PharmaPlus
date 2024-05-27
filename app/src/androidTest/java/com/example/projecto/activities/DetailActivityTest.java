@@ -74,5 +74,4 @@ public class DetailActivityTest {
         Espresso.onView(ViewMatchers.withId(R.id.quantity))
                 .check(ViewAssertions.matches(ViewMatchers.withText("1")));
     }
-
 }

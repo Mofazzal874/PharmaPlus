@@ -65,7 +65,6 @@ public class SuggestedAdapters extends RecyclerView.Adapter<SuggestedAdapters.Vi
         TextView name,description,gname,discount;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             sugImg = itemView.findViewById(R.id.sug_img);
             name = itemView.findViewById(R.id.sug_name);
             description = itemView.findViewById(R.id.sug_des);
