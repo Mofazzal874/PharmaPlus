@@ -4,7 +4,7 @@
 
 **An e-commerce pharmacy management app for Android — order medicines, manage a cart, check out, and run the whole store from an admin panel.**
 
-Built as our **CSE 3120 – Software Engineering & Information Systems** project in **Android Studio Jellyfish (Java)**.
+Built as a part of **CSE 3120 – Software Engineering & Information Systems** project in **Android Studio Jellyfish (Java)**.
 
 </div>
 
@@ -21,12 +21,12 @@ You don't need Android Studio to take it for a spin — pick whichever is easier
 - **Run it in the browser** — the Appetize.io link, no install, just click and wait a few seconds for the emulator to boot
 - **Install the real thing** — download the APK and sideload it on any Android device running Android 9 (Pie) or newer
 
-**Login credentials** — the admin account unlocks product management, the user account is the normal shopping experience:
+**🔑 Login credentials** — the admin account unlocks product management, the user account is the normal shopping experience:
 
 | Role  | Email / Username | Password   |
 |-------|------------------|------------|
-| Admin | `admin`          | `admin`    |
-| User  | `test@gmail.com` | `test@123` |
+| 🛠️ Admin | `admin`          | `admin`    |
+| 🛒 User  | `test@gmail.com` | `test@123` |
 
 Log in as the user to browse, add to cart and place an order — then log in as admin to add, edit or remove products and watch the catalog change.
 
@@ -35,13 +35,13 @@ Log in as the user to browse, add to cart and place an order — then log in as 
 
 ---
 
-## About the project
+## 📖 About the project
 
 PharmaPlus is a two-sided pharmacy app. On one side, customers can browse medicines and health products by category, open a product to read the details, drop items into a cart, save a delivery address and place an order. On the other side, an admin panel lets the store owner add new products (with images), modify existing ones and delete what's out of stock — all backed by Firebase so changes show up live.
 
 It started as a coursework project, but we treated it like a real product: proper architecture, design patterns where they actually made sense, and an automated test + build pipeline on GitHub.
 
-## Features
+## ✨ Features
 
 **For customers**
 - Sign up / log in with Firebase Authentication
@@ -58,7 +58,7 @@ It started as a coursework project, but we treated it like a real product: prope
 - Modify or delete existing products
 - Everything syncs to the storefront in real time
 
-## Tech stack
+## 🧰 Tech stack
 
 | Area | What we used |
 |------|--------------|
@@ -70,7 +70,7 @@ It started as a coursework project, but we treated it like a real product: prope
 | Build | Gradle (Kotlin DSL), `minSdk 28`, `targetSdk 34` |
 | CI | GitHub Actions |
 
-## Design patterns
+## 🧩 Design patterns
 
 We didn't sprinkle patterns for the sake of it — each one solved a real problem:
 
@@ -79,7 +79,7 @@ We didn't sprinkle patterns for the sake of it — each one solved a real proble
 - **Observer** — the storefront reacts when a new product is added
 - **Adapter** — RecyclerView adapters for categories, suggested items, cart, orders and the "view all" lists
 
-## Testing & CI
+## ✅ Testing & CI
 
 - **Unit testing** with JUnit, Mockito and Robolectric (runs on the JVM, no emulator needed)
 - **UI / instrumentation testing** with Espresso
@@ -87,7 +87,7 @@ We didn't sprinkle patterns for the sake of it — each one solved a real proble
 
 ---
 
-## Architecture & Diagrams
+## 📐 Architecture & Diagrams
 
 > These are trimmed-down versions of the design for readability — the full app has 20+ functionalities.
 
@@ -105,7 +105,7 @@ We didn't sprinkle patterns for the sake of it — each one solved a real proble
 
 ---
 
-## Screenshots
+## 📱 Screenshots
 
 <table>
   <tr>
@@ -132,10 +132,10 @@ We didn't sprinkle patterns for the sake of it — each one solved a real proble
 
 ---
 
-## The team
+## 👥 The team
 
 This was a collaborative project by:
 
-- [Ekramul Alam Apan (2007071)](https://github.com/Apn7)
-- [Amit Kairy (2007069)](https://github.com/superXnova21)
-- [Mofazzal Hosen (2007074)](https://github.com/Mofazzal874)
+- [Ekramul Alam Apan ](https://github.com/Apn7)
+- [Amit Kairy ](https://github.com/superXnova21)
+- [Mofazzal Hosen ](https://github.com/Mofazzal874)
